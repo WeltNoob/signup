@@ -7,6 +7,8 @@
  * - Provides Sign Up button (navigates to form or Google Forms URL)
  */
 
+import Markdown from "react-native-markdown-display";
+import { Linking } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { ImageBackground } from "expo-image";
@@ -93,12 +95,21 @@ export default function VolunteerOpportunityScreen({ route, navigation }) {
           </View>
 
           {/* Optional description section */}
-          {description !== "" && (
+          {typeof description === "string" && description.trim() !== "" && (
             <View style={styles.about}>
               <Heading>About</Heading>
-              <Text style={{ fontSize: 14 }} selectable>
+              <Markdown
+                style={{
+                  body: { fontSize: 14, color: colors.black },
+                  link: { color: colors.primary },
+                }}
+                onLinkPress={(url) => {
+                  Linking.openURL(url);
+                  return true;
+                }}
+              >
                 {description}
-              </Text>
+              </Markdown>
             </View>
           )}
 

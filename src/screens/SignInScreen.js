@@ -88,7 +88,7 @@ export default function SignInScreen({ navigation }) {
             style={styles.OAuthLogo}
             source={require("../assets/google.png")}
           />
-          <Text style={[styles.OAuthText]} selectable={true}>
+          <Text style={[styles.OAuthText]} selectable={true}  >
             {" "}
             Sign in with Google
           </Text>
